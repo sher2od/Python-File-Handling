@@ -1,14 +1,15 @@
-student = 'Input/grades.csv'
+with open("Input/grades.csv") as f:
+    f.readline()
+    lines = f.readlines()
 
-top_student = ""
-top_grade = -1
+    rows = list(map(
+        lambda line: line.strip().split(','),
+        lines
+    ))
 
-with open(student, 'r') as f:
-    for line in f:
-        name, grade = line.strip().split(',')
-        grade = int(grade)
-        if grade > top_grade:
-            top_grade = grade
-            top_student = name
+    highest_grade = max(
+        rows,
+        key=lambda row: row[1]
+    )
 
-print("Eng yuqori baho olgan oquvchi:", top_student, "-", top_grade)
+    print(highest_grade)

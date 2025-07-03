@@ -1,13 +1,10 @@
-from collections import Counter
+with open("Input/grades.csv") as f:
+    f.readline()
+    lines = f.read().split()
 
-student = 'Input/grades.csv'
+    grades = dict()
+    for line in lines:
+        name,grade = line.split(',')
+        grades.setdefault(grade,[]).append(name)
 
-grades = []
-
-with open(student, 'r') as f:
-    for line in f:
-        grades.append(int(line.strip()))
-
-result = Counter(grades)
-
-print(result)
+print(grades)
